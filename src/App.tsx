@@ -3,7 +3,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { AuthProvider, useAuth } from "@/contexts/AuthContext";
+import { AuthProvider, useAuth, PerfilUsuario } from "@/contexts/AuthContext";
 import LoginPage from "@/components/LoginPage";
 import Layout from "@/components/Layout";
 import Dashboard from "@/pages/Dashboard";
@@ -11,6 +11,12 @@ import Registros from "@/pages/Registros";
 import Holerite from "@/pages/Holerite";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
+import Equipe from "@/pages/Equipe";
+import BancoHoras from "@/pages/BancoHoras";
+import Fechamento from "@/pages/Fechamento";
+import AjustesPendentes from "@/pages/AjustesPendentes";
+import Configuracoes from "@/pages/Configuracoes";
+import Perfil from "@/pages/Perfil";
 
 const queryClient = new QueryClient();
 
@@ -59,34 +65,32 @@ const AppContent = () => {
       } />
       <Route path="/equipe" element={
         <ProtectedRoute>
-          <div className="text-center py-12">
-            <h2 className="text-2xl font-bold">Equipe</h2>
-            <p className="text-muted-foreground mt-2">Em desenvolvimento...</p>
-          </div>
+          <Equipe />
         </ProtectedRoute>
       } />
       <Route path="/banco-horas" element={
         <ProtectedRoute>
-          <div className="text-center py-12">
-            <h2 className="text-2xl font-bold">Banco de Horas</h2>
-            <p className="text-muted-foreground mt-2">Em desenvolvimento...</p>
-          </div>
+          <BancoHoras />
         </ProtectedRoute>
       } />
       <Route path="/fechamento" element={
         <ProtectedRoute>
-          <div className="text-center py-12">
-            <h2 className="text-2xl font-bold">Fechamento</h2>
-            <p className="text-muted-foreground mt-2">Em desenvolvimento...</p>
-          </div>
+          <Fechamento />
+        </ProtectedRoute>
+      } />
+      <Route path="/ajustes-pendentes" element={
+        <ProtectedRoute>
+          <AjustesPendentes />
+        </ProtectedRoute>
+      } />
+      <Route path="/perfil" element={
+        <ProtectedRoute>
+          <Perfil />
         </ProtectedRoute>
       } />
       <Route path="/configuracoes" element={
         <ProtectedRoute>
-          <div className="text-center py-12">
-            <h2 className="text-2xl font-bold">Configurações</h2>
-            <p className="text-muted-foreground mt-2">Em desenvolvimento...</p>
-          </div>
+          <Configuracoes />
         </ProtectedRoute>
       } />
       <Route path="/organizacao" element={

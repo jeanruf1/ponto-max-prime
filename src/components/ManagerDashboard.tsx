@@ -14,6 +14,7 @@ import {
   Calendar
 } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 interface FuncionarioStatus {
   id: string;
@@ -25,7 +26,7 @@ interface FuncionarioStatus {
 
 const ManagerDashboard = () => {
   const { usuario } = useAuth();
-
+  const navigate = useNavigate();
   // Mock data
   const colaboradoresAtivos = 12;
   const ausentes = 3;
@@ -114,7 +115,7 @@ const ManagerDashboard = () => {
 
       {/* Quick Action Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <Card className="hover:shadow-md transition-shadow cursor-pointer">
+        <Card className="hover:shadow-md transition-shadow cursor-pointer" onClick={() => navigate('/ajustes-pendentes')}>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Ajustes Pendentes</CardTitle>
             <AlertTriangle className="h-4 w-4 text-warning" />
@@ -224,14 +225,14 @@ const ManagerDashboard = () => {
           </div>
 
           {/* Action Buttons */}
-          <div className="flex justify-end space-x-3 mt-6 pt-4 border-t">
-            <Button variant="outline">
-              Exportar Relatório
-            </Button>
-            <Button>
-              Ver Detalhes da Equipe
-            </Button>
-          </div>
+        <div className="flex justify-end space-x-3 mt-6 pt-4 border-t">
+          <Button variant="outline" onClick={() => navigate('/equipe')}>
+            Exportar Relatório
+          </Button>
+          <Button onClick={() => navigate('/equipe')}>
+            Ver Detalhes da Equipe
+          </Button>
+        </div>
         </CardContent>
       </Card>
 
@@ -245,15 +246,15 @@ const ManagerDashboard = () => {
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-3">
-            <Button variant="outline" className="w-full justify-start">
+            <Button variant="outline" className="w-full justify-start" onClick={() => navigate('/ajustes-pendentes')}>
               <AlertTriangle className="w-4 h-4 mr-2" />
               Revisar Ajustes Pendentes ({ajustesPendentes})
             </Button>
-            <Button variant="outline" className="w-full justify-start">
+            <Button variant="outline" className="w-full justify-start" onClick={() => navigate('/banco-horas')}>
               <TrendingUp className="w-4 h-4 mr-2" />
               Gestão do Banco de Horas
             </Button>
-            <Button variant="outline" className="w-full justify-start">
+            <Button variant="outline" className="w-full justify-start" onClick={() => navigate('/fechamento')}>
               <Calendar className="w-4 h-4 mr-2" />
               Fechamento do Mês
             </Button>

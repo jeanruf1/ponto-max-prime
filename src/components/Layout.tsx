@@ -58,7 +58,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     }
 
     if (usuario?.perfil === PerfilUsuario.GESTOR || usuario?.perfil === PerfilUsuario.ADMIN) {
-      items = [...items, ...colaboradorItems, ...gestorItems];
+      items = [...items, ...gestorItems];
     }
 
     if (usuario?.perfil === PerfilUsuario.ADMIN) {
@@ -134,13 +134,17 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                   </div>
                 </div>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem>
-                  <User className="mr-2 h-4 w-4" />
-                  <span>Perfil</span>
+                <DropdownMenuItem asChild>
+                  <Link to="/perfil" className="flex items-center">
+                    <User className="mr-2 h-4 w-4" />
+                    <span>Perfil</span>
+                  </Link>
                 </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <Settings className="mr-2 h-4 w-4" />
-                  <span>Configurações</span>
+                <DropdownMenuItem asChild>
+                  <Link to="/configuracoes" className="flex items-center">
+                    <Settings className="mr-2 h-4 w-4" />
+                    <span>Configurações</span>
+                  </Link>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={logout}>

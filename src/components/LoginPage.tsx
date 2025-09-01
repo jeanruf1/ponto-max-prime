@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
-import { Clock, Shield } from 'lucide-react';
+import { LogIn } from 'lucide-react';
 import { toast } from '@/hooks/use-toast';
 
 const LoginPage = () => {
@@ -37,36 +37,30 @@ const LoginPage = () => {
     }
   };
 
-  const demoUsers = [
-    { email: 'colaborador@pontomax.com.br', perfil: 'Colaborador' },
-    { email: 'gestor@pontomax.com.br', perfil: 'Gestor' },
-    { email: 'admin@pontomax.com.br', perfil: 'Admin' }
-  ];
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary to-accent flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         {/* Logo and Title */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-white rounded-full mb-4 shadow-lg">
-            <Clock className="w-8 h-8 text-primary" />
+          <div className="inline-flex items-center justify-center w-20 h-20 bg-white rounded-full mb-6 shadow-lg">
+            <span className="text-3xl font-bold text-blue-600">P</span>
           </div>
-          <h1 className="text-3xl font-bold text-white mb-2">PontoMax</h1>
-          <p className="text-white/80">Sistema de Controle de Ponto</p>
+          <h1 className="text-4xl font-bold text-white mb-2">PontoMax</h1>
+          <p className="text-white/90 text-lg">Sistema de Controle de Ponto</p>
         </div>
 
         {/* Login Form */}
-        <Card className="shadow-2xl border-0">
-          <CardHeader className="text-center pb-4">
-            <CardTitle className="text-2xl font-semibold">Fazer Login</CardTitle>
-            <CardDescription>
+        <Card className="shadow-2xl border-0 bg-white rounded-2xl">
+          <CardHeader className="text-center pb-6 pt-8">
+            <CardTitle className="text-2xl font-bold text-gray-800">Fazer Login</CardTitle>
+            <CardDescription className="text-gray-600 text-base mt-2">
               Digite suas credenciais para acessar o sistema
             </CardDescription>
           </CardHeader>
-          <CardContent>
-            <form onSubmit={handleSubmit} className="space-y-4">
+          <CardContent className="px-8 pb-8">
+            <form onSubmit={handleSubmit} className="space-y-6">
               <div className="space-y-2">
-                <Label htmlFor="email">E-mail</Label>
+                <Label htmlFor="email" className="text-gray-700 font-medium">E-mail</Label>
                 <Input
                   id="email"
                   type="email"
@@ -74,12 +68,12 @@ const LoginPage = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  className="h-11"
+                  className="h-12 text-base border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 />
               </div>
               
               <div className="space-y-2">
-                <Label htmlFor="senha">Senha</Label>
+                <Label htmlFor="senha" className="text-gray-700 font-medium">Senha</Label>
                 <Input
                   id="senha"
                   type="password"
@@ -87,38 +81,19 @@ const LoginPage = () => {
                   value={senha}
                   onChange={(e) => setSenha(e.target.value)}
                   required
-                  className="h-11"
+                  className="h-12 text-base border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 />
               </div>
 
               <Button
                 type="submit"
                 disabled={isLoading}
-                className="w-full h-11 bg-gradient-to-r from-primary to-accent hover:from-primary-hover hover:to-accent-hover"
+                className="w-full h-12 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg text-base transition-colors duration-200"
               >
-                <Shield className="w-4 h-4 mr-2" />
+                <LogIn className="w-5 h-5 mr-2" />
                 {isLoading ? 'Entrando...' : 'Entrar'}
               </Button>
             </form>
-
-            {/* Demo Credentials */}
-            <div className="mt-6 p-4 bg-muted/5 rounded-lg border">
-              <h4 className="font-medium text-sm mb-3 flex items-center">
-                <Shield className="w-4 h-4 mr-2" />
-                Credenciais de Demonstração
-              </h4>
-              <div className="space-y-2 text-xs">
-                {demoUsers.map((user, index) => (
-                  <div key={index} className="flex justify-between">
-                    <span className="text-muted-foreground">{user.perfil}:</span>
-                    <span className="font-mono">{user.email}</span>
-                  </div>
-                ))}
-                <div className="pt-2 border-t text-center text-muted-foreground">
-                  Senha: <span className="font-mono">123456</span>
-                </div>
-              </div>
-            </div>
           </CardContent>
         </Card>
       </div>
